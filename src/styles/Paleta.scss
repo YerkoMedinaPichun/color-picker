@@ -1,0 +1,16 @@
+@import "variables";
+
+.contenedor-paleta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  .paleta {
+    box-shadow: 0 0 5px 2px #555555;
+  }
+}
+
+.contenedor-variables {
+  font-family: $fuente-codigo;
+}
