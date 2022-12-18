@@ -1,0 +1,16 @@
+@import "./variables.scss";
+
+.section-variables {
+  margin: 2rem 0;
+  h3 {
+    user-select: none;
+  }
+  .contenedor-variables {
+    width: 30rem;
+    padding: 1rem 0;
+    border: 1px solid $color-negro;
+    .variable {
+      padding: 2rem;
+    }
+  }
+}

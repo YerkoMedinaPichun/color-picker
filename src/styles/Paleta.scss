@@ -1,13 +1,45 @@
 @import "variables";
 
 .contenedor-paleta {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 3rem;
+  width: 80%;
+  min-height: 100px;
+  border: 1px solid rgba($color-negro, 0.4);
+  box-shadow: 0 5px 15px rgba($color-negro, 0.3);
+  padding: 20px;
+  margin: 20px auto;
+
   .paleta {
-    box-shadow: 0 0 5px 2px #555555;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    .color {
+      width: 5rem;
+      height: 5rem;
+      box-shadow: 0 5px 15px rgba($color-negro, 0.3);
+      position: relative;
+      ion-icon {
+        color: red;
+        position: absolute;
+        top: -1.5rem;
+        right: -1.5rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        opacity: 0.4;
+        cursor: pointer;
+        background-color: $color-claro-01;
+        padding: 4px;
+        transition: opacity 0.3s ease;
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
   }
 }
 .seccion-variables {
@@ -16,8 +48,9 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex: 1 1 200px;
   gap: 4rem;
-  @media (min-width: 680px) {
+  @media (min-width: 1024px) {
     flex-direction: row;
   }
   .contenedor-variables {

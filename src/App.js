@@ -5,7 +5,7 @@ import Title from "./components/Title";
 
 function App() {
   const [currentColor, setCurrentColor] = useState("#000000");
-  const [name, setName] = useState("");
+  const [nameColor, setNameColor] = useState("");
   const [palette, setPalette] = useState(
     localStorage.getItem("palette")
       ? JSON.parse(localStorage.getItem("palette"))
@@ -26,18 +26,19 @@ function App() {
   };
 
   const handleName = (e) => {
-    setName(e.target.value);
+    setNameColor(e.target.value);
+    console.log(e.target.value);
   };
 
   const agregarColor = (e) => {
     e.preventDefault();
     if (currentColor.at(0) !== "#") return;
     if (currentColor.length !== 7) return;
-    if (name.trim() === "" || name.length === 0) return;
+    if (nameColor.trim() === "" || nameColor.length === 0) return;
 
     let singleColor = {
       id: window.crypto.randomUUID(),
-      nombre: name,
+      nombre: nameColor,
       color: currentColor,
     };
     // console.log(singleColor);
@@ -64,7 +65,7 @@ function App() {
 
   return (
     <div className="app">
-      <Title>Color Save</Title>
+      <Title />
       <ColorPicker
         handleChangeColor={handleChangeColor}
         handleColor={handleColor}
@@ -72,7 +73,7 @@ function App() {
         agregarColor={agregarColor}
         eliminarColor={eliminarColor}
         currentColor={currentColor}
-        name={name}
+        name={nameColor}
         palette={palette}
       />
     </div>
