@@ -5,12 +5,23 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
+  gap: 3rem;
   .paleta {
     box-shadow: 0 0 5px 2px #555555;
   }
 }
-
-.contenedor-variables {
-  font-family: $fuente-codigo;
+.seccion-variables {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4rem;
+  @media (min-width: 680px) {
+    flex-direction: row;
+  }
+  .contenedor-variables {
+    font-family: $fuente-codigo;
+    min-height: 15rem;
+  }
 }
