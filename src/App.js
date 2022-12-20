@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.scss";
 import ColorPicker from "./components/ColorPicker";
 import Title from "./components/Title";
 
 function App() {
-  const [currentColor, setCurrentColor] = useState("#000000");
+  const [currentColor, setCurrentColor] = useState("#f0f0f0");
   const [nameColor, setNameColor] = useState("");
   const [palette, setPalette] = useState(
     localStorage.getItem("palette")
@@ -16,7 +16,6 @@ function App() {
   const handleChangeColor = (e) => {
     if (e.target.value.length === 7) {
       //setCurrentColor(e.target.value);
-      console.log("Input correcto");
       setCurrentColor(e.target.value);
     }
   };
