@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.scss";
 import ColorPicker from "./components/ColorPicker";
 import Title from "./components/Title";
@@ -6,22 +6,29 @@ import Title from "./components/Title";
 function App() {
   const [currentColor, setCurrentColor] = useState("#f0f0f0");
   const [nameColor, setNameColor] = useState("");
+  const [styleColor, setStyleColor] = useState({
+    backgroundColor: `${currentColor}`,
+  });
   const [palette, setPalette] = useState(
     localStorage.getItem("palette")
       ? JSON.parse(localStorage.getItem("palette"))
       : []
   );
 
-  //console.log(palette);
   const handleChangeColor = (e) => {
     if (e.target.value.length === 7) {
       //setCurrentColor(e.target.value);
       setCurrentColor(e.target.value);
+      setStyleColor({ backgroundColor: `${e.target.value}` });
     }
   };
   const handleColor = (e) => {
-    //console.log(e.target.value);
     setCurrentColor(e.target.value);
+    if (e.target.value.length < 7) {
+      setStyleColor({ backgroundColor: "#000000" });
+    } else {
+      setStyleColor({ backgroundColor: `${e.target.value}` });
+    }
   };
 
   const handleName = (e) => {
@@ -74,6 +81,7 @@ function App() {
         currentColor={currentColor}
         name={nameColor}
         palette={palette}
+        styleColor={styleColor}
       />
     </div>
   );

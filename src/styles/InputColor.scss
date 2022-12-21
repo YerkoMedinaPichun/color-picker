@@ -1,8 +1,45 @@
 .input-color {
-  width: 100px;
+  width: 200px;
   height: 100px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  margin: 2rem 0;
+  z-index: 15;
+  position: relative;
+}
+.color-top {
+  content: "";
+  width: 198px;
+  height: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  position: absolute;
+  z-index: 20;
+}
+.color-bottom {
+  content: "";
+  width: 198px;
+  height: 5px;
+  left: 50%;
+  top: 93px;
+  transform: translateX(-50%);
+  position: absolute;
+  z-index: 20;
+}
+.color-left {
+  content: "";
+  width: 6px;
+  height: 98px;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+}
+.color-right {
+  content: "";
+  width: 6px;
+  height: 98px;
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  right: 0;
 }

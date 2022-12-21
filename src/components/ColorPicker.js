@@ -15,6 +15,7 @@ const ColorPicker = ({
   agregarColor,
   palette,
   eliminarColor,
+  styleColor,
 }) => {
   return (
     <>
@@ -23,8 +24,10 @@ const ColorPicker = ({
           handleChangeColor={handleChangeColor}
           handleColor={handleColor}
           currentColor={currentColor}
+          styleColor={styleColor}
         />
         <div className="contenedor-input">
+          <label htmlFor="hexadecimal">#</label>
           <input
             className="input-text input-text--hex"
             id="hexadecimal"
