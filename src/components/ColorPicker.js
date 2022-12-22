@@ -7,53 +7,107 @@ import InputColor from "./InputColor";
 import Paleta from "./Paleta";
 
 const ColorPicker = ({
-  handleChangeColor,
-  handleColor,
-  currentColor,
-  nameColor,
-  handleName,
-  agregarColor,
-  palette,
-  eliminarColor,
-  styleColor,
+  color,
+  handleChangeInputColor,
+  hex,
+  handleChangeInputTextHex,
+  rgb,
+  handleChangeInputTextRgb,
+  colorName,
+  handleChangeInputTextColorName,
+  handleBlurInputTextHex,
+  validateInputTextRgb,
 }) => {
   return (
     <>
       <form className="color-picker">
         <InputColor
-          handleChangeColor={handleChangeColor}
-          handleColor={handleColor}
-          currentColor={currentColor}
-          styleColor={styleColor}
+          color={color}
+          handleChangeInputColor={handleChangeInputColor}
         />
-        <div className="contenedor-input">
-          <label htmlFor="hexadecimal">#</label>
-          <input
-            className="input-text input-text--hex"
-            id="hexadecimal"
-            type="text"
-            placeholder="#000000"
-            required
-            maxLength="7"
-            value={currentColor}
-            onChange={((e) => handleChangeColor, handleColor)}
-          />
-        </div>
-        <div className="contenedor-input">
-          <label htmlFor="nombre">Nombre</label>
-          <input
-            className="input-text"
-            id="nombre"
-            type="text"
-            placeholder="color-rojo-01"
-            value={nameColor}
-            onChange={handleName}
-            required
-          />
-        </div>
-        <Button text="Agregar Color" agregarColor={agregarColor} />
+
+        <label htmlFor="hexadecimal">#</label>
+        <input
+          className="input-text input-text--hex"
+          id="hexadecimal"
+          type="text"
+          placeholder="#000000"
+          required
+          maxLength="7"
+          value={hex}
+          onChange={handleChangeInputTextHex}
+          onBlur={handleBlurInputTextHex}
+        />
+
+        <label htmlFor="r">R</label>
+        <input
+          className="input-text input-text--rgb"
+          id="r"
+          type="number"
+          min="0"
+          max="255"
+          placeholder="0"
+          required
+          maxLength="3"
+          value={rgb[0]}
+          //onChange={handleChangeInputTextRgb}
+          onChange={handleChangeInputTextRgb}
+        />
+        <label htmlFor="g">G</label>
+        <input
+          className="input-text input-text--rgb"
+          id="g"
+          type="number"
+          min="0"
+          max="255"
+          placeholder="0"
+          required
+          maxLength="3"
+          value={rgb[1]}
+          onChange={handleChangeInputTextRgb}
+        />
+        <label htmlFor="b">B</label>
+        <input
+          className="input-text input-text--rgb"
+          id="b"
+          type="number"
+          min="0"
+          max="255"
+          placeholder="0"
+          required
+          maxLength="3"
+          value={rgb[2]}
+          onChange={handleChangeInputTextRgb}
+        />
+
+        <label className="label-nombre-color" htmlFor="nombre">
+          Nombre del Color
+        </label>
+        <input
+          className="input-text input-nombre-color"
+          id="nombre"
+          type="text"
+          placeholder="color-gris-01"
+          required
+          value={colorName}
+          onChange={handleChangeInputTextColorName}
+        />
+
+        <label className="label-nombre-paleta" htmlFor="nombrePaleta">
+          Nombre de la Paleta
+        </label>
+        <input
+          className="input-text input-nombre-paleta"
+          id="nombrePaleta"
+          type="text"
+          placeholder="Grises"
+          required
+          value={colorName}
+          onChange={handleChangeInputTextColorName}
+        />
+        <Button text="Agregar Color" />
       </form>
-      <div className="contenedor-paleta">
+      {/* <div className="contenedor-paleta">
         {palette.length !== 0 ? (
           <Paleta palette={palette} eliminarColor={eliminarColor} />
         ) : null}
@@ -62,7 +116,7 @@ const ColorPicker = ({
         <Colores title="css" palette={palette} />
         <Colores title="scss/sass" palette={palette} />
         <Colores title="less" palette={palette} />
-      </section>
+      </section> */}
     </>
   );
 };
