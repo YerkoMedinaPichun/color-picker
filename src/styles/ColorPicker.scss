@@ -1,18 +1,27 @@
 @import "./variables.scss";
+main {
+  display: grid;
+  margin: auto;
+  @media (min-width: 1024px) {
+    grid-template-columns: 50% 50%;
+    width: 90rem;
+  }
+}
 .color-picker {
   width: 210px;
 
-  margin: 2rem auto;
+  margin: 4rem auto;
+
   //padding: 2rem;
   // display: flex;
   // justify-content: center;
   // align-items: center;
   // flex-direction: column;
   border-radius: 6px;
-  border: 1px solid $color-gris-03;
+  border: 1px solid $color-negro;
   overflow: hidden;
   z-index: 10;
-  background-color: $color-blanco;
+  background-color: $color-negro;
   display: grid;
   gap: 1rem;
   //grid-template-rows: 8;
@@ -38,9 +47,11 @@ label {
 .input-text {
   font-size: 2rem;
   padding: 0.5rem;
-  border: 1px solid $color-gris-03;
+  border: 1px solid $color-gris-01;
   width: 90%;
   outline: none;
+  background-color: $color-gris-02;
+  color: $color-claro-01;
 }
 .input-text--hex {
   width: 10rem;
@@ -61,11 +72,12 @@ input[type="number"]::-webkit-outer-spin-button {
 .label-nombre-paleta,
 .input-nombre-paleta {
   grid-column: 1 / 3;
-  text-align: center;
+  text-align: left;
 }
 .label-nombre-color,
 .label-nombre-paleta {
   padding-top: 2rem;
+  padding-left: 1rem;
 }
 .input-nombre-color,
 .input-nombre-paleta {

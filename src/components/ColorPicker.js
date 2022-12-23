@@ -7,24 +7,27 @@ import InputColor from "./InputColor";
 import Paleta from "./Paleta";
 
 const ColorPicker = ({
-  color,
   handleChangeInputColor,
-  hex,
+
   handleChangeInputTextHex,
-  rgb,
+
   handleChangeInputTextRgb,
-  colorName,
+
   handleChangeInputTextColorName,
   handleBlurInputTextHex,
-  // validateInputTextRgb,
+
   currentColor,
-  paletteName,
-  handleChangeInputTextPaletteName,
-  addPalette,
+  addColor,
+  deleteColor,
+  palette,
+
+  // paletteName,
+  // handleChangeInputTextPaletteName,
+  // addPalette,
 }) => {
   return (
-    <>
-      <form className="color-picker" onSubmit={addPalette}>
+    <main>
+      <form className="color-picker" onSubmit={addColor}>
         <InputColor
           color={currentColor.color}
           handleChangeInputColor={handleChangeInputColor}
@@ -97,7 +100,7 @@ const ColorPicker = ({
           onChange={handleChangeInputTextColorName}
         />
 
-        <label className="label-nombre-paleta" htmlFor="nombrePaleta">
+        {/* <label className="label-nombre-paleta" htmlFor="nombrePaleta">
           Nombre de la Paleta
         </label>
         <input
@@ -108,20 +111,20 @@ const ColorPicker = ({
           required
           value={paletteName}
           onChange={handleChangeInputTextPaletteName}
-        />
+        /> */}
         <Button text="Agregar Color" />
       </form>
-      {/* <div className="contenedor-paleta">
+      <div className="contenedor-paleta">
         {palette.length !== 0 ? (
-          <Paleta palette={palette} eliminarColor={eliminarColor} />
+          <Paleta palette={palette} deleteColor={deleteColor} />
         ) : null}
       </div>
       <section className="seccion-variables">
         <Colores title="css" palette={palette} />
         <Colores title="scss/sass" palette={palette} />
         <Colores title="less" palette={palette} />
-      </section> */}
-    </>
+      </section>
+    </main>
   );
 };
 

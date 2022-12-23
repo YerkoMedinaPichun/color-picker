@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Paleta.scss";
 
-const Paleta = ({ palette, eliminarColor }) => {
+const Paleta = ({ palette, deleteColor }) => {
   return (
     <div className="paleta">
       {palette.map((singlePalette, index) => (
@@ -13,7 +13,7 @@ const Paleta = ({ palette, eliminarColor }) => {
           }}
         >
           <ion-icon
-            onClick={eliminarColor}
+            onClick={deleteColor}
             id={singlePalette.id}
             name="trash-outline"
             className="icono-eliminar"

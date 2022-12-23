@@ -15,7 +15,7 @@ const Colores = ({ title, palette }) => {
               : title === "less"
               ? "@"
               : null}
-            {singlePalette.nombre}: {singlePalette.color};
+            {singlePalette.colorName}: {singlePalette.hex};
             <br />
           </span>
         ))}

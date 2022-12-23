@@ -1,14 +1,24 @@
 @import "./variables.scss";
-
+section {
+  @media (min-width: 1024px) {
+    grid-column: 1 / 3;
+    margin: auto;
+  }
+}
 .section-variables {
   margin: 2rem 0;
+
   h3 {
     user-select: none;
+    color: $color-rosa-01;
+    letter-spacing: 2px;
   }
   .contenedor-variables {
     width: 30rem;
     padding: 1rem 0;
-    border: 1px solid $color-negro;
+
+    background-color: $color-negro;
+    color: $color-rosa-01;
     .variable {
       padding: 2rem;
     }
