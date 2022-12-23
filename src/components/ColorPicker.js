@@ -16,13 +16,17 @@ const ColorPicker = ({
   colorName,
   handleChangeInputTextColorName,
   handleBlurInputTextHex,
-  validateInputTextRgb,
+  // validateInputTextRgb,
+  currentColor,
+  paletteName,
+  handleChangeInputTextPaletteName,
+  addPalette,
 }) => {
   return (
     <>
-      <form className="color-picker">
+      <form className="color-picker" onSubmit={addPalette}>
         <InputColor
-          color={color}
+          color={currentColor.color}
           handleChangeInputColor={handleChangeInputColor}
         />
 
@@ -34,7 +38,7 @@ const ColorPicker = ({
           placeholder="#000000"
           required
           maxLength="7"
-          value={hex}
+          value={currentColor.hex}
           onChange={handleChangeInputTextHex}
           onBlur={handleBlurInputTextHex}
         />
@@ -49,7 +53,7 @@ const ColorPicker = ({
           placeholder="0"
           required
           maxLength="3"
-          value={rgb[0]}
+          value={currentColor.rgb[0]}
           //onChange={handleChangeInputTextRgb}
           onChange={handleChangeInputTextRgb}
         />
@@ -63,7 +67,7 @@ const ColorPicker = ({
           placeholder="0"
           required
           maxLength="3"
-          value={rgb[1]}
+          value={currentColor.rgb[1]}
           onChange={handleChangeInputTextRgb}
         />
         <label htmlFor="b">B</label>
@@ -76,7 +80,7 @@ const ColorPicker = ({
           placeholder="0"
           required
           maxLength="3"
-          value={rgb[2]}
+          value={currentColor.rgb[2]}
           onChange={handleChangeInputTextRgb}
         />
 
@@ -89,7 +93,7 @@ const ColorPicker = ({
           type="text"
           placeholder="color-gris-01"
           required
-          value={colorName}
+          value={currentColor.colorName}
           onChange={handleChangeInputTextColorName}
         />
 
@@ -102,8 +106,8 @@ const ColorPicker = ({
           type="text"
           placeholder="Grises"
           required
-          value={colorName}
-          onChange={handleChangeInputTextColorName}
+          value={paletteName}
+          onChange={handleChangeInputTextPaletteName}
         />
         <Button text="Agregar Color" />
       </form>

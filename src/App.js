@@ -4,17 +4,24 @@ import ColorPicker from "./components/ColorPicker";
 import Title from "./components/Title";
 
 function App() {
-  const [errors, setErrors] = useState({
-    color: "",
-    hex: "",
-    rgb: "",
-    name: "",
-    namePalette: "",
+  // const [color, setColor] = useState("#000000");
+  // const [hex, setHex] = useState(color);
+  // const [rgb, setRgb] = useState(convertColor(color, "rgb"));
+  // const [colorName, setColorName] = useState("");
+  const [paletteName, setPaletteName] = useState("");
+  const [currentColor, setCurrentColor] = useState({
+    id: "",
+    color: "#000000",
+    hex: "#000000",
+    rgb: [0, 0, 0],
+    colorName: "",
   });
-  const [color, setColor] = useState("#000000");
-  const [hex, setHex] = useState(color.slice(1));
-  const [rgb, setRgb] = useState(convertColor(color, "rgb"));
-  const [colorName, setColorName] = useState("");
+  const [currentPalette, setCurrentPalette] = useState({
+    id: "",
+    paletteName: "",
+    colors: [],
+  });
+  const [allPalette, setAllPalette] = useState([]);
 
   //funciones y manejadores de eventos
 
@@ -22,26 +29,45 @@ function App() {
     // if (e.target.value.match(/^[0-9a-fA-F]{0,6}$/)) {
     //   setErrors([...errors], []);
     // }
-    setColor(e.target.value);
-    setHex(e.target.value);
-    console.log(convertColor(e.target.value, "rgb"));
-    setRgb(convertColor(e.target.value, "rgb"));
+    // setColor(e.target.value);
+    // setHex(e.target.value);
+    // console.log(convertColor(e.target.value, "rgb"));
+    // setRgb(convertColor(e.target.value, "rgb"));
+    setCurrentColor({
+      ...currentColor,
+      color: e.target.value,
+      hex: e.target.value,
+      rgb: convertColor(e.target.value, "rgb"),
+    });
   };
 
   const handleChangeInputTextHex = (e) => {
     console.log("cambiando valor hexadecimal");
-    console.log(e.target.value);
-    setHex(e.target.value);
+    if (e.target.value.at(0) !== "#") e.target.value = "#" + e.target.value;
+
+    //setHex(e.target.value);
+    setCurrentColor({
+      ...currentColor,
+      hex: e.target.value,
+    });
+
     if (e.target.value.length !== 7) return;
-    setColor(e.target.value);
-    setRgb(convertColor(e.target.value, "rgb"));
-    console.log(e.target.value.length === 7);
+    //setColor(e.target.value);
+    //setRgb(convertColor(e.target.value, "rgb"));
+    //console.log(e.target.value.length === 7);
+
+    setCurrentColor({
+      ...currentColor,
+      color: e.target.value,
+      hex: e.target.value,
+      rgb: convertColor(e.target.value, "rgb"),
+    });
   };
 
   const handleChangeInputTextRgb = (e) => {
     console.log("cambiando valor rgb");
     validateInputTextRgb(e);
-    const newRgb = [...rgb];
+    const newRgb = [...currentColor.rgb];
     switch (e.target.id) {
       case "r":
         newRgb[0] = parseInt(e.target.value);
@@ -55,23 +81,76 @@ function App() {
       default:
         return;
     }
-    setRgb(newRgb);
-    console.log(convertColor(newRgb, "hex"));
-    setColor(convertColor(newRgb, "hex"));
-    setHex(convertColor(newRgb, "hex"));
+    //setRgb(newRgb);
+    //console.log(convertColor(newRgb, "hex"));
+    //setColor(convertColor(newRgb, "hex"));
+    //setHex(convertColor(newRgb, "hex"));
+    setCurrentColor({
+      ...currentColor,
+      color: convertColor(newRgb, "hex"),
+      hex: convertColor(newRgb, "hex"),
+      rgb: newRgb,
+    });
   };
 
   const handleChangeInputTextColorName = (e) => {
-    setColorName(e.target.value);
+    //setColorName(e.target.value);
+    setCurrentColor({
+      ...currentColor,
+      colorName: e.target.value,
+    });
   };
 
   const handleBlurInputTextHex = (e) => {
     console.log(`${e.target.value} ha dejado de tener el foco`);
-    if (e.target.value.length < 7) {
-      setHex("#000000");
-      setColor("#000000");
-      setRgb(["0", "0", "0"]);
+    if (e.target.value.length === 4) {
+      e.target.value = e.target.value + e.target.value.slice(1);
+      //console.log(e.target.value.slice(1));
+      //setHex(e.target.value);
+      //setColor(e.target.value);
+      //setRgb(convertColor(e.target.value, "rgb"));
+      setCurrentColor({
+        ...currentColor,
+        color: e.target.value,
+        hex: e.target.value,
+        rgb: convertColor(e.target.value, "rgb"),
+      });
     }
+
+    if (e.target.value.length < 7) {
+      //setHex("#000000");
+      //setColor("#000000");
+      //setRgb(["0", "0", "0"]);
+      setCurrentColor({
+        ...currentColor,
+        color: "#000000",
+        hex: "#000000",
+        rgb: [0, 0, 0],
+      });
+    }
+  };
+  const handleChangeInputTextPaletteName = (e) => {
+    setPaletteName(e.target.value);
+  };
+
+  const addPalette = (e) => {
+    e.preventDefault();
+    //setCurrentColor({ id: crypto.randomUUID(), hex, rgb, colorName });
+
+    // const newPalette = {
+    //   id: window.crypto.randomUUID(),
+    //   paletteName,
+    //   colors: [],
+    // };
+
+    // const newColor = {
+    //   id: window.crypto.randomUUID(),
+    //   hex,
+    //   rgb,
+    //   colorName,
+    // };
+    // newPalette.colors.push(newColor);
+    // setAllPalette([...allPalette, newPalette]);
   };
 
   const validateInputTextRgb = (e) => {
@@ -116,28 +195,20 @@ function App() {
     <div className="app">
       <Title />
       <ColorPicker
-        color={color}
+        // color={color}
         handleChangeInputColor={handleChangeInputColor}
-        hex={hex}
+        //hex={hex}
         handleChangeInputTextHex={handleChangeInputTextHex}
-        rgb={rgb}
+        //rgb={rgb}
         handleChangeInputTextRgb={handleChangeInputTextRgb}
-        colorName={colorName}
+        //colorName={colorName}
         handleChangeInputTextColorName={handleChangeInputTextColorName}
         handleBlurInputTextHex={handleBlurInputTextHex}
         validateInputTextRgb={validateInputTextRgb}
-        // handleChangeColor={handleChangeColor}
-        // handleChangeInputColor={handleChangeInputColor}
-        // handleName={handleName}
-        // agregarColor={agregarColor}
-        // eliminarColor={eliminarColor}
-        // hex={hex}
-        // name={nameColor}
-        // palette={palette}
-        // styleColor={styleColor}
-        // rgb={rgb}
-        // setRGB={setRGB}
-        // handleChangeRGB={handleChangeRGB}
+        currentColor={currentColor}
+        paletteName={paletteName}
+        handleChangeInputTextPaletteName={handleChangeInputTextPaletteName}
+        addPalette={addPalette}
       />
     </div>
   );
